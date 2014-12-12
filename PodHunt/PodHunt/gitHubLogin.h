@@ -8,13 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface gitHubLogin : UIView
+@protocol GitHubLoginDelegate <NSObject>
+
+-(void)didBeginLogin:(void(^)(BOOL success))completion;
+
+@end
 
 
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageVIew;
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
--(void) setUpConstraintsForView;
+@interface GitHubLogin : UIView
+
+
+@property (retain, nonatomic) IBOutlet UIView *containerView;
+@property (retain, nonatomic) IBOutlet UIImageView *iconImageVIew;
+@property (retain, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) id<GitHubLoginDelegate> delegate;
+
 - (IBAction)loginButton:(id)sender;
 
 @end

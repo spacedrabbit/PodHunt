@@ -10,7 +10,6 @@
 		93AFFAEFF0795CD87039115E /* libPods-PodHunt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAA7B9BEA93747051E6F3EF /* libPods-PodHunt.a */; };
 		B1278C8A1A168C2000DFBA93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278C891A168C2000DFBA93 /* main.m */; };
 		B1278C8D1A168C2000DFBA93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278C8C1A168C2000DFBA93 /* AppDelegate.m */; };
-		B1278C901A168C2000DFBA93 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278C8F1A168C2000DFBA93 /* ViewController.m */; };
 		B1278C931A168C2000DFBA93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1278C911A168C2000DFBA93 /* Main.storyboard */; };
 		B1278C951A168C2000DFBA93 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1278C941A168C2000DFBA93 /* Images.xcassets */; };
 		B1278C981A168C2000DFBA93 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1278C961A168C2000DFBA93 /* LaunchScreen.xib */; };
@@ -22,6 +21,7 @@
 		B1278CB91A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278CB81A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m */; };
 		B1278CBC1A16964500DFBA93 /* LandingPage_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278CBB1A16964500DFBA93 /* LandingPage_VC.m */; };
 		B1278CBF1A16970A00DFBA93 /* gitHubLogin_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278CBE1A16970A00DFBA93 /* gitHubLogin_VC.m */; };
+		B16691201A3A5FE500CE48CC /* cocoabeen.png in Resources */ = {isa = PBXBuildFile; fileRef = B166911F1A3A5FE500CE48CC /* cocoabeen.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +41,6 @@
 		B1278C891A168C2000DFBA93 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1278C8B1A168C2000DFBA93 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B1278C8C1A168C2000DFBA93 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B1278C8E1A168C2000DFBA93 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B1278C8F1A168C2000DFBA93 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B1278C921A168C2000DFBA93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B1278C941A168C2000DFBA93 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B1278C971A168C2000DFBA93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -60,6 +58,7 @@
 		B1278CBB1A16964500DFBA93 /* LandingPage_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingPage_VC.m; sourceTree = "<group>"; };
 		B1278CBD1A16970A00DFBA93 /* gitHubLogin_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gitHubLogin_VC.h; sourceTree = "<group>"; };
 		B1278CBE1A16970A00DFBA93 /* gitHubLogin_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gitHubLogin_VC.m; sourceTree = "<group>"; };
+		B166911F1A3A5FE500CE48CC /* cocoabeen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cocoabeen.png; sourceTree = "<group>"; };
 		B271084A918ACBAAAF1DD829 /* Pods-PodHunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodHunt.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodHunt/Pods-PodHunt.release.xcconfig"; sourceTree = "<group>"; };
 		D45C60B4C3CDED09E6F5C11E /* Pods-PodHunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodHunt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodHunt/Pods-PodHunt.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +94,7 @@
 		B1278C7B1A168C2000DFBA93 = {
 			isa = PBXGroup;
 			children = (
+				B166911F1A3A5FE500CE48CC /* cocoabeen.png */,
 				B1278C861A168C2000DFBA93 /* PodHunt */,
 				B1278CA01A168C2000DFBA93 /* PodHuntTests */,
 				B1278C851A168C2000DFBA93 /* Products */,
@@ -115,14 +115,11 @@
 		B1278C861A168C2000DFBA93 /* PodHunt */ = {
 			isa = PBXGroup;
 			children = (
-				B1278CAD1A168CC700DFBA93 /* Base Project */,
-				B1278C871A168C2000DFBA93 /* Supporting Files */,
-				B1278CAE1A168CFD00DFBA93 /* gitHubLogin.xib */,
-				B1278CB41A1690EA00DFBA93 /* gitHubLogin.h */,
-				B1278CB51A1690EA00DFBA93 /* gitHubLogin.m */,
-				B1278CB71A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.h */,
-				B1278CB81A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m */,
+				B1278CAD1A168CC700DFBA93 /* App Delegate */,
+				B166911E1A3A481D00CE48CC /* Utils */,
 				B1278CC01A16981A00DFBA93 /* Login Controllers */,
+				B166911D1A3A47E500CE48CC /* GitHub Login View */,
+				B1278C871A168C2000DFBA93 /* Supporting Files */,
 			);
 			path = PodHunt;
 			sourceTree = "<group>";
@@ -158,15 +155,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B1278CAD1A168CC700DFBA93 /* Base Project */ = {
+		B1278CAD1A168CC700DFBA93 /* App Delegate */ = {
 			isa = PBXGroup;
 			children = (
 				B1278C8B1A168C2000DFBA93 /* AppDelegate.h */,
 				B1278C8C1A168C2000DFBA93 /* AppDelegate.m */,
-				B1278C8E1A168C2000DFBA93 /* ViewController.h */,
-				B1278C8F1A168C2000DFBA93 /* ViewController.m */,
 			);
-			name = "Base Project";
+			name = "App Delegate";
 			sourceTree = "<group>";
 		};
 		B1278CC01A16981A00DFBA93 /* Login Controllers */ = {
@@ -178,6 +173,25 @@
 				B1278CBE1A16970A00DFBA93 /* gitHubLogin_VC.m */,
 			);
 			name = "Login Controllers";
+			sourceTree = "<group>";
+		};
+		B166911D1A3A47E500CE48CC /* GitHub Login View */ = {
+			isa = PBXGroup;
+			children = (
+				B1278CAE1A168CFD00DFBA93 /* gitHubLogin.xib */,
+				B1278CB41A1690EA00DFBA93 /* gitHubLogin.h */,
+				B1278CB51A1690EA00DFBA93 /* gitHubLogin.m */,
+			);
+			name = "GitHub Login View";
+			sourceTree = "<group>";
+		};
+		B166911E1A3A481D00CE48CC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B1278CB71A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.h */,
+				B1278CB81A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		C70D27AB297DBF21E71E5B39 /* Frameworks */ = {
@@ -239,6 +253,7 @@
 				TargetAttributes = {
 					B1278C831A168C2000DFBA93 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 3457AE227Q;
 					};
 					B1278C9C1A168C2000DFBA93 = {
 						CreatedOnToolsVersion = 6.1;
@@ -276,6 +291,7 @@
 				B1278C981A168C2000DFBA93 /* LaunchScreen.xib in Resources */,
 				B1278C951A168C2000DFBA93 /* Images.xcassets in Resources */,
 				B1278CB11A168ED000DFBA93 /* GitHub_Logo.png in Resources */,
+				B16691201A3A5FE500CE48CC /* cocoabeen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +343,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1278CB61A1690EA00DFBA93 /* gitHubLogin.m in Sources */,
-				B1278C901A168C2000DFBA93 /* ViewController.m in Sources */,
 				B1278CB91A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m in Sources */,
 				B1278CBC1A16964500DFBA93 /* LandingPage_VC.m in Sources */,
 				B1278C8D1A168C2000DFBA93 /* AppDelegate.m in Sources */,
@@ -455,6 +470,7 @@
 			baseConfigurationReference = D45C60B4C3CDED09E6F5C11E /* Pods-PodHunt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PodHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -466,6 +482,7 @@
 			baseConfigurationReference = B271084A918ACBAAAF1DD829 /* Pods-PodHunt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PodHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -8,7 +8,7 @@
 
 #import "LandingPage_VC.h"
 #import "gitHubLogin_VC.h"
-#import "gitHubLogin.h"
+#import "GitHubLogin.h"
 
 @interface LandingPage_VC ()
 
@@ -42,8 +42,8 @@
 
 - (IBAction)loginButton:(id)sender {
     
-    gitHubLogin_VC * loginScreen = [self.storyboard instantiateViewControllerWithIdentifier:@"GitHubView"];
-    
+    gitHubLogin_VC * loginScreen = [[gitHubLogin_VC alloc] init];
+
     [self presentViewController:loginScreen animated:YES completion:^{
         NSLog(@"Done");
     }];
