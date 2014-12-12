@@ -20,6 +20,7 @@ static NSString *const kGitHubTokenURL  = @"https://github.com/login/oauth/acces
 static NSString *const kGitHubRedirectURL = @"gitlog://redirectedURL";
 
 static NSString * kGitHubCode = @"";
+static NSString * kGitHubToken = @"";
 
 @interface gitHubLogin_VC () <GitHubLoginDelegate>
 
@@ -46,6 +47,22 @@ static NSString * kGitHubCode = @"";
         if (note)
         {
             kGitHubCode = [self urlCodeParser:note.userInfo[@"url"]];
+            
+            [self didBeginTokenRequest:^(BOOL success){
+                if (success) {
+                    // save token to NSUserDefaults
+                    [[NSUserDefaults standardUserDefaults] setObject:kGitHubToken forKey:@"githubToken"];
+                    
+                    if ([[NSUserDefaults standardUserDefaults] synchronize]) {
+                        NSLog(@"Github token %@ saved to NSUserDefaults", kGitHubToken);
+                        NSLog(@"Saved as: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"githubToken"]);
+                    }
+
+                }
+            }];
+        }
+        else{
+            NSLog(@"No notification info");
         }
     }];
     
@@ -55,7 +72,6 @@ static NSString * kGitHubCode = @"";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 -(void)didBeginLogin{
     
@@ -77,6 +93,41 @@ static NSString * kGitHubCode = @"";
     [[UIApplication sharedApplication] openURL:authenticationRequest.URL];
     
 }
+-(void)didBeginTokenRequest:(void(^)(BOOL))success{
+    
+    NSDictionary * tokenParameters = @{
+                                        @"client_id"        : kPodHuntClientID,
+                                        @"client_secret"    : kPodHuntClientSecret,
+                                        @"code"             : kGitHubCode,
+                                        @"redirect_uri"     : kGitHubRedirectURL
+                                       };
+    
+    NSMutableURLRequest * githubURLTokenRequest = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST"
+                                                                                                URLString:kGitHubTokenURL
+                                                                                               parameters:tokenParameters
+                                                                                                    error:nil];
+    [githubURLTokenRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"]; // this is fucking critical, apparently
+    // otherwise you just get a bunch of xml request issues
+    AFURLSessionManager * sessionManager = [[AFURLSessionManager alloc] init];
+    NSURLSessionDataTask * task = [sessionManager  dataTaskWithRequest:githubURLTokenRequest
+                                                     completionHandler:^(NSURLResponse *response, id responseObject, NSError *error)
+    {
+        if (!error)
+        {
+            NSLog(@"Token recovered");
+            kGitHubToken = [responseObject objectForKey:@"access_token"];
+            NSLog(@"The token: %@", kGitHubToken);
+            
+            success(YES);
+        }
+        else
+        {
+            NSLog(@"Error encountered: %@", error);
+        }
+    }];
+    [task resume];
+    
+}
 
 // gets the range of the code in the url, which are the last X characters
 -(NSString *) urlCodeParser:(NSURL *)url
@@ -84,7 +135,6 @@ static NSString * kGitHubCode = @"";
     NSString *  codeURL  = [url absoluteString];
     NSRange     codeRange= [codeURL rangeOfString:@"code="];
     return [codeURL substringWithRange:NSMakeRange(NSMaxRange(codeRange), codeURL.length - NSMaxRange(codeRange))];
-    
 }
 
 

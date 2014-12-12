@@ -1,4 +1,4 @@
-//
+    //
 //  gitHubLogin.h
 //  PodHunt
 //
@@ -18,9 +18,9 @@
 @interface GitHubLogin : UIView
 
 
-@property (retain, nonatomic) IBOutlet UIView *containerView;
-@property (retain, nonatomic) IBOutlet UIImageView *iconImageVIew;
-@property (retain, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) UIView *containerView;
+@property (strong, nonatomic) UIImageView *iconImageVIew;
+@property (strong, nonatomic) UIButton *loginButton;
 @property (strong, nonatomic) id<GitHubLoginDelegate> delegate;
 
 

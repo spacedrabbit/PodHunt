@@ -52,7 +52,7 @@
                 <outlet property="iconImageVIew" destination="Zqr-du-Xaq" id="HFl-Mn-aND"/>
                 <outlet property="loginButton" destination="aVj-Iq-MeT" id="CVx-WR-y6d"/>
             </connections>
-            <point key="canvasLocation" x="387" y="513"/>
+            <point key="canvasLocation" x="227" y="500"/>
         </view>
     </objects>
     <resources>
