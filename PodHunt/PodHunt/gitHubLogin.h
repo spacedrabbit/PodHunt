@@ -10,7 +10,7 @@
 
 @protocol GitHubLoginDelegate <NSObject>
 
--(void)didBeginLogin:(void(^)(BOOL success))completion;
+-(void)didBeginLogin;
 
 @end
 
@@ -23,6 +23,5 @@
 @property (retain, nonatomic) IBOutlet UIButton *loginButton;
 @property (strong, nonatomic) id<GitHubLoginDelegate> delegate;
 
-- (IBAction)loginButton:(id)sender;
 
 @end

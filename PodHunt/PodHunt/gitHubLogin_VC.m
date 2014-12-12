@@ -17,6 +17,10 @@ static NSString *const kPodHuntClientSecret    = @"99819e450ce4ebb5c9790de502e40
 static NSString *const kGitHubAuthURL   = @"https://github.com/login/oauth/authorize"   ; //GET
 static NSString *const kGitHubTokenURL  = @"https://github.com/login/oauth/access_token"; //POST
 
+static NSString *const kGitHubRedirectURL = @"gitlog://redirectedURL";
+
+static NSString * kGitHubCode = @"";
+
 @interface gitHubLogin_VC () <GitHubLoginDelegate>
 
 //@property (strong, nonatomic) GitHubLogin * rootView;
@@ -27,10 +31,23 @@ static NSString *const kGitHubTokenURL  = @"https://github.com/login/oauth/acces
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     GitHubLogin * rootView = [[[NSBundle mainBundle] loadNibNamed:@"gitHubLogin" owner:self options:nil] firstObject];
     [self setView:rootView];
     
     rootView.delegate = self;
+    
+    // notification is posted from AppDelegate.m
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"gitRedirect"
+                                                      object:nil
+                                                       queue:[NSOperationQueue mainQueue]
+                                                  usingBlock:^(NSNotification *note)
+    {
+        if (note)
+        {
+            kGitHubCode = [self urlCodeParser:note.userInfo[@"url"]];
+        }
+    }];
     
 }
 
@@ -40,35 +57,33 @@ static NSString *const kGitHubTokenURL  = @"https://github.com/login/oauth/acces
 }
 
 
-#pragma mark - Navigation
+-(void)didBeginLogin{
+    
+    NSDictionary * requestParameters =  @{
+                                            @"client_id"    : kPodHuntClientID,
+                                            @"scope"        : @"admin:org",
+                                            @"redirect_uri" : kGitHubRedirectURL
+                                         };
+    
+    AFHTTPRequestSerializer * gitRequestSerializer = [AFHTTPRequestSerializer serializer];
+    NSMutableURLRequest * authenticationRequest = [ gitRequestSerializer requestWithMethod:@"GET"
+                                                                                 URLString:kGitHubAuthURL
+                                                                                parameters:requestParameters
+                                                                                     error:nil
+                                                   ];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+    
+    [[UIApplication sharedApplication] openURL:authenticationRequest.URL];
+    
 }
 
--(void)didBeginLogin:(void (^)(BOOL))completion{
-    NSLog(@"Did it begin");
-    NSDictionary * loginParameters = @{ @"client_id"    : kPodHuntClientID,
-                                        @"redirect_uri" : @"gitLog",
-                                            @"scope"   : @"admin:org",
-                                       };
-
-    AFHTTPSessionManager * authenticationManager = [AFHTTPSessionManager manager];
-    authenticationManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-
-    NSURLSessionDataTask * authTask = [authenticationManager GET:kGitHubAuthURL
-                                                      parameters:loginParameters
-                                                         success:^(NSURLSessionDataTask *task, id responseObject)
-    {
-        
-    }
-                                                         failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                                             NSLog(@"The error: %@", error);
-    }];
-    [authTask resume];
-
+// gets the range of the code in the url, which are the last X characters
+-(NSString *) urlCodeParser:(NSURL *)url
+{
+    NSString *  codeURL  = [url absoluteString];
+    NSRange     codeRange= [codeURL rangeOfString:@"code="];
+    return [codeURL substringWithRange:NSMakeRange(NSMaxRange(codeRange), codeURL.length - NSMaxRange(codeRange))];
     
 }
 

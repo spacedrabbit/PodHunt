@@ -26,7 +26,7 @@
 			<key>CFBundleURLIconFile</key>
 			<string>cocoabeen.png</string>
 			<key>CFBundleURLName</key>
-			<string>GitLoginURL</string>
+			<string>gitredirect</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>gitLog</string>

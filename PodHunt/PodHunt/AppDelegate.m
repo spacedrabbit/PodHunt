@@ -44,10 +44,11 @@
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
     NSLog(@"Handling URL");
-    NSLog(@"THe url: %@", url);
-    NSLog(@"SOurce app: %@", sourceApplication);
-    NSLog(@"The annotation: %@", annotation);
-    
+    if ( [[url absoluteString] hasPrefix:@"gitlog"] ) {
+        NSLog(@"The url: %@", url);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"gitRedirect" object:nil userInfo:@{ @"url" : url }];
+    }
+
     return YES;
 }
 

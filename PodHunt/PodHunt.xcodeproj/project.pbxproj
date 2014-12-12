@@ -169,8 +169,6 @@
 			children = (
 				B1278CBA1A16964500DFBA93 /* LandingPage_VC.h */,
 				B1278CBB1A16964500DFBA93 /* LandingPage_VC.m */,
-				B1278CBD1A16970A00DFBA93 /* gitHubLogin_VC.h */,
-				B1278CBE1A16970A00DFBA93 /* gitHubLogin_VC.m */,
 			);
 			name = "Login Controllers";
 			sourceTree = "<group>";
@@ -178,9 +176,11 @@
 		B166911D1A3A47E500CE48CC /* GitHub Login View */ = {
 			isa = PBXGroup;
 			children = (
-				B1278CAE1A168CFD00DFBA93 /* gitHubLogin.xib */,
+				B1278CBD1A16970A00DFBA93 /* gitHubLogin_VC.h */,
+				B1278CBE1A16970A00DFBA93 /* gitHubLogin_VC.m */,
 				B1278CB41A1690EA00DFBA93 /* gitHubLogin.h */,
 				B1278CB51A1690EA00DFBA93 /* gitHubLogin.m */,
+				B1278CAE1A168CFD00DFBA93 /* gitHubLogin.xib */,
 			);
 			name = "GitHub Login View";
 			sourceTree = "<group>";
