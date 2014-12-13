@@ -128,19 +128,27 @@ static NSString * kGitHubToken = @"";
     }
     return self;
 }
+
+-(void)loadView
+{
+    //self.loginView = [[[NSBundle mainBundle] loadNibNamed:@"gitHubLogin" owner:self options:nil] firstObject];
+    self.loginView = [[GitHubLogin alloc] init];
+    [self setView:self.loginView];
+    [self.loginView.loginButton addTarget:self action:@selector(didBeginLogin) forControlEvents:UIControlEventTouchUpInside];
+}
+
+#pragma mark - ViewController Methods -
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.loginView = [[[NSBundle mainBundle] loadNibNamed:@"gitHubLogin" owner:self options:nil] firstObject];
-    [self setView:self.loginView];
-    
-    [self.loginView.loginButton addTarget:self action:@selector(didBeginLogin) forControlEvents:UIControlEventTouchUpInside];
     
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Authentication Handler Delegate Methods -
 
 -(void)didBeginCodeRequest:(void (^)(BOOL))sucess{
     
@@ -149,6 +157,7 @@ static NSString * kGitHubToken = @"";
     
 }
 
+#pragma mark - Notification Handler Delegate Methods -
 -(void)didReceiveCodeNotificationResponse:(NSDictionary *)noteInfo
 {
     kGitHubCode = [self urlCodeParser:noteInfo[@"url"]];

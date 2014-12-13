@@ -20,6 +20,7 @@
     if (self)
     {
         NSLog(@"Init");
+        [self awakeFromNibbers];
     }
     return self;
 }
@@ -28,12 +29,11 @@
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        NSLog(@"coder");
+        NSLog(@"Coder");
     }
     return self;
 }
-
--(void)awakeFromNib
+-(void)awakeFromNibbers
 {
     [super awakeFromNib];
     NSLog(@"Awaken");
