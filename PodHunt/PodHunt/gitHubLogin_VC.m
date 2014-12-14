@@ -192,9 +192,25 @@ static NSString * kGitHubToken = @"";
                                    {
                                        if (!error)
                                        {
-                                           kGitHubToken = [responseObject objectForKey:@"access_token"];
-                                           NSLog(@"Token successfully issued: %@", kGitHubToken);
-                                           success(YES, kGitHubToken);
+                                           if ([responseObject objectForKey:@"access_token"]) {
+                                               kGitHubToken = [responseObject objectForKey:@"access_token"];
+                                               NSLog(@"Token successfully issued: %@", kGitHubToken);
+                                               success(YES, kGitHubToken);
+                                           }else if ([responseObject objectForKey:@"error"])
+                                           {
+                                               NSString * errorMessage = [NSString stringWithFormat:@"There was an error: %@\n\nDescription from Git: %@\n\nURL: %@", responseObject[@"error"], responseObject[@"error_description"], responseObject[@"error_uri"]];
+                                               
+                                               UIAlertView * badCodeAlert = [[UIAlertView alloc] initWithTitle:@"Error Authenticating"
+                                                                                                       message:errorMessage
+                                                                                                      delegate:nil
+                                                                                             cancelButtonTitle:@"Dismiss"
+                                                                                             otherButtonTitles:nil];
+                                               [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                                   [badCodeAlert show];
+                                               }];
+                                           }else{
+                                               NSLog(@"Something weird happened with the token request...");
+                                           }
                                        }
                                        else
                                        {
