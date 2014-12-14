@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141A75041A3D87CA00DBCA23 /* GitHub-Mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 141A75031A3D87CA00DBCA23 /* GitHub-Mark.png */; };
 		93AFFAEFF0795CD87039115E /* libPods-PodHunt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAA7B9BEA93747051E6F3EF /* libPods-PodHunt.a */; };
 		B1278C8A1A168C2000DFBA93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278C891A168C2000DFBA93 /* main.m */; };
 		B1278C8D1A168C2000DFBA93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278C8C1A168C2000DFBA93 /* AppDelegate.m */; };
-		B1278C931A168C2000DFBA93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1278C911A168C2000DFBA93 /* Main.storyboard */; };
 		B1278C951A168C2000DFBA93 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1278C941A168C2000DFBA93 /* Images.xcassets */; };
 		B1278C981A168C2000DFBA93 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1278C961A168C2000DFBA93 /* LaunchScreen.xib */; };
 		B1278CA41A168C2000DFBA93 /* PodHuntTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278CA31A168C2000DFBA93 /* PodHuntTests.m */; };
@@ -35,13 +35,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		141A75031A3D87CA00DBCA23 /* GitHub-Mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GitHub-Mark.png"; sourceTree = "<group>"; };
 		7DAA7B9BEA93747051E6F3EF /* libPods-PodHunt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PodHunt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1278C841A168C2000DFBA93 /* PodHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1278C881A168C2000DFBA93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1278C891A168C2000DFBA93 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1278C8B1A168C2000DFBA93 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B1278C8C1A168C2000DFBA93 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B1278C921A168C2000DFBA93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B1278C941A168C2000DFBA93 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B1278C971A168C2000DFBA93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B1278C9D1A168C2000DFBA93 /* PodHuntTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodHuntTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,8 +127,8 @@
 		B1278C871A168C2000DFBA93 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				141A75031A3D87CA00DBCA23 /* GitHub-Mark.png */,
 				B1278CB01A168ED000DFBA93 /* GitHub_Logo.png */,
-				B1278C911A168C2000DFBA93 /* Main.storyboard */,
 				B1278C941A168C2000DFBA93 /* Images.xcassets */,
 				B1278C961A168C2000DFBA93 /* LaunchScreen.xib */,
 				B1278C881A168C2000DFBA93 /* Info.plist */,
@@ -287,8 +287,8 @@
 			files = (
 				B1278CB31A168EE900DFBA93 /* 300.png in Resources */,
 				B1278CAF1A168CFD00DFBA93 /* gitHubLogin.xib in Resources */,
-				B1278C931A168C2000DFBA93 /* Main.storyboard in Resources */,
 				B1278C981A168C2000DFBA93 /* LaunchScreen.xib in Resources */,
+				141A75041A3D87CA00DBCA23 /* GitHub-Mark.png in Resources */,
 				B1278C951A168C2000DFBA93 /* Images.xcassets in Resources */,
 				B1278CB11A168ED000DFBA93 /* GitHub_Logo.png in Resources */,
 				B16691201A3A5FE500CE48CC /* cocoabeen.png in Resources */,
@@ -370,14 +370,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B1278C911A168C2000DFBA93 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B1278C921A168C2000DFBA93 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B1278C961A168C2000DFBA93 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -471,9 +463,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PodHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -483,9 +477,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PodHunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

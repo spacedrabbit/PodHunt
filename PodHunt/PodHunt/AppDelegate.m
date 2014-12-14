@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 com.SRLabs. All rights reserved.
 //
 
+#import "UIColor+HoneyPotColorPallette.h"
 #import "AppDelegate.h"
+#import "LandingPage_VC.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,23 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    LandingPage_VC * rootViewController = [[LandingPage_VC alloc] init];
+    UINavigationController * rootNavControl = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    [self.window setRootViewController:rootNavControl];
+    
+    UIFont * navBarFont = [UIFont fontWithName:@"Avenir" size:24.0];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
+    [[UINavigationBar appearance] setTranslucent:YES];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor beigerThanBeige]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName: navBarFont,
+                                                            NSForegroundColorAttributeName : [UIColor deepNavy],
+                                                            }];
+    [[UINavigationBar appearance] setTintColor:[UIColor seafoamGreen]];
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

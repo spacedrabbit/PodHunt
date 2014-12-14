@@ -262,6 +262,7 @@ static NSString * kGitHubToken = @"";
 @property (strong, nonatomic) PodHuntNotificationHandler    * notificationHandler;
 @property (strong, nonatomic) PodHuntAuthenticationHandler  * authenticationHandler;
 @property (strong, nonatomic) GitHubLogin                   * loginView;
+//@property (weak,   nonatomic)
 
 @end
 
@@ -310,6 +311,7 @@ static NSString * kGitHubToken = @"";
     {
         if (tokenRecovered) {
             [self.authenticationHandler saveToken:token];
+            [self.delegate didFinishLoggingIn]; // dismisses view
         }
     }];
 }
@@ -321,5 +323,7 @@ static NSString * kGitHubToken = @"";
     [self didbeginTokenRequestForAccessCode:returnedGitHubCode completion:nil];
 }
 
-
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
 @end

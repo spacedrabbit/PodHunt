@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GitHubLoginViewControllerDelegate <NSObject>
+
+-(void) didFinishLoggingIn;
+
+@end
+
 @interface gitHubLogin_VC : UIViewController
+
+@property (weak, nonatomic) id<GitHubLoginViewControllerDelegate> delegate;
 
 @end
