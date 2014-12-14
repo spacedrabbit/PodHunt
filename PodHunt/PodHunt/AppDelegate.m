@@ -41,15 +41,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
--(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    
-    NSLog(@"Handling URL");
-    if ( [[url absoluteString] hasPrefix:@"gitlog"] ) {
-        NSLog(@"The url: %@", url);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"gitRedirect" object:nil userInfo:@{ @"url" : url }];
-    }
 
-    return YES;
-}
 
 @end
