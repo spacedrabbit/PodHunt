@@ -23,6 +23,8 @@
 		B1278CB91A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278CB81A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m */; };
 		B1278CBC1A16964500DFBA93 /* LandingPage_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278CBB1A16964500DFBA93 /* LandingPage_VC.m */; };
 		B1278CBF1A16970A00DFBA93 /* gitHubLogin_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278CBE1A16970A00DFBA93 /* gitHubLogin_VC.m */; };
+		B12E153F1A3F485800F6CAAD /* UserSplashPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B12E153E1A3F485800F6CAAD /* UserSplashPageController.m */; };
+		B12E15431A3F5CA100F6CAAD /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = B12E15421A3F5CA100F6CAAD /* menu.png */; };
 		B16691201A3A5FE500CE48CC /* cocoabeen.png in Resources */ = {isa = PBXBuildFile; fileRef = B166911F1A3A5FE500CE48CC /* cocoabeen.png */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,9 @@
 		B1278CBB1A16964500DFBA93 /* LandingPage_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingPage_VC.m; sourceTree = "<group>"; };
 		B1278CBD1A16970A00DFBA93 /* gitHubLogin_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gitHubLogin_VC.h; sourceTree = "<group>"; };
 		B1278CBE1A16970A00DFBA93 /* gitHubLogin_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gitHubLogin_VC.m; sourceTree = "<group>"; };
+		B12E153D1A3F485800F6CAAD /* UserSplashPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserSplashPageController.h; path = PodHunt/UserSplashPageController.h; sourceTree = "<group>"; };
+		B12E153E1A3F485800F6CAAD /* UserSplashPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserSplashPageController.m; path = PodHunt/UserSplashPageController.m; sourceTree = "<group>"; };
+		B12E15421A3F5CA100F6CAAD /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		B166911F1A3A5FE500CE48CC /* cocoabeen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cocoabeen.png; path = ../cocoabeen.png; sourceTree = "<group>"; };
 		B271084A918ACBAAAF1DD829 /* Pods-PodHunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodHunt.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodHunt/Pods-PodHunt.release.xcconfig"; sourceTree = "<group>"; };
 		D45C60B4C3CDED09E6F5C11E /* Pods-PodHunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodHunt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodHunt/Pods-PodHunt.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +105,8 @@
 		14911D701A3E9D6E007C0108 /* SlashPage */ = {
 			isa = PBXGroup;
 			children = (
+				B12E153D1A3F485800F6CAAD /* UserSplashPageController.h */,
+				B12E153E1A3F485800F6CAAD /* UserSplashPageController.m */,
 				14911D6D1A3E9D56007C0108 /* UserSplashPage.h */,
 				14911D6E1A3E9D56007C0108 /* UserSplashPage.m */,
 			);
@@ -154,6 +161,7 @@
 		B1278C871A168C2000DFBA93 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B12E15421A3F5CA100F6CAAD /* menu.png */,
 				B166911F1A3A5FE500CE48CC /* cocoabeen.png */,
 				141A75031A3D87CA00DBCA23 /* GitHub-Mark.png */,
 				B1278CB01A168ED000DFBA93 /* GitHub_Logo.png */,
@@ -313,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B12E15431A3F5CA100F6CAAD /* menu.png in Resources */,
 				B1278CB31A168EE900DFBA93 /* 300.png in Resources */,
 				B1278CAF1A168CFD00DFBA93 /* gitHubLogin.xib in Resources */,
 				B1278C981A168C2000DFBA93 /* LaunchScreen.xib in Resources */,
@@ -370,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B12E153F1A3F485800F6CAAD /* UserSplashPageController.m in Sources */,
 				14911D6F1A3E9D56007C0108 /* UserSplashPage.m in Sources */,
 				B1278CB61A1690EA00DFBA93 /* gitHubLogin.m in Sources */,
 				B1278CB91A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m in Sources */,

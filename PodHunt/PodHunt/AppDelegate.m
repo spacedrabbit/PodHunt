@@ -9,6 +9,7 @@
 #import "UIColor+HoneyPotColorPallette.h"
 #import "AppDelegate.h"
 #import "LandingPage_VC.h"
+#import "UserSplashPageController.h"
 
 @interface AppDelegate ()
 
@@ -27,11 +28,11 @@
     UIFont * navBarFont = [UIFont fontWithName:@"Avenir" size:24.0];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
     [[UINavigationBar appearance] setTranslucent:YES];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor beigerThanBeige]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor eggShellWhite]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName: navBarFont,
                                                             NSForegroundColorAttributeName : [UIColor deepNavy],
                                                             }];
-    [[UINavigationBar appearance] setTintColor:[UIColor seafoamGreen]];
+    [[UINavigationBar appearance] setTintColor:[UIColor bloodOrangeRed]];
     
     [self.window makeKeyAndVisible];
     
