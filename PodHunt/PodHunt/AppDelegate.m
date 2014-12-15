@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 com.SRLabs. All rights reserved.
 //
 
+#import <MMDrawerController/MMDrawerController.h>
+#import <MMDrawerController/MMDrawerBarButtonItem.h>
 #import "UIColor+HoneyPotColorPallette.h"
 #import "AppDelegate.h"
 #import "LandingPage_VC.h"
@@ -23,7 +25,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     LandingPage_VC * rootViewController = [[LandingPage_VC alloc] init];
     UINavigationController * rootNavControl = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-    [self.window setRootViewController:rootNavControl];
+    
+    UIViewController * testLeftControl = [[UIViewController alloc] init];
+    [testLeftControl.view setBackgroundColor:[UIColor seafoamGreen]];
+    MMDrawerController * drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootNavControl leftDrawerViewController:testLeftControl];
     
     UIFont * navBarFont = [UIFont fontWithName:@"Avenir" size:24.0];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
@@ -34,6 +39,7 @@
                                                             }];
     [[UINavigationBar appearance] setTintColor:[UIColor bloodOrangeRed]];
     
+    [self.window setRootViewController:drawerController];
     [self.window makeKeyAndVisible];
     
     return YES;

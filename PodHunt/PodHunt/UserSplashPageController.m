@@ -18,26 +18,16 @@
 
 @interface GitHubProfileCache : NSURLCache <AFImageCache>
 
-@property (weak, nonatomic) UIImage * cachedProfileImage;
+@property (strong, nonatomic) UIImage * cachedProfileImage;
 
 @end
 
-
 @implementation GitHubProfileCache
-
--(instancetype)init{
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
 
 -(UIImage *)cachedImageForRequest:(NSURLRequest *)request{
     
     NSCachedURLResponse * fullResponse = [self cachedResponseForRequest:request];
     NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)fullResponse.response;
-    
     
     if (httpResponse.statusCode == 200)
     {
@@ -66,6 +56,8 @@
 @property (strong,  nonatomic)      UITableView * splashStarTable;
 @property (strong,  nonatomic)      UITableView * splashForkTable;
 
+@property (strong, nonatomic)       NSDictionary * fullUserInfo;
+
 @property (strong, nonatomic)       GitHubAPIRequestManager * sharedAPIManager;
 @property (strong, nonatomic)       GitHubProfileCache * profileCache;
 
@@ -87,6 +79,8 @@
         _splashForkTable = _splashPage.forkedTable;
         
         _sharedAPIManager = [GitHubAPIRequestManager sharedManager];
+        
+        _fullUserInfo = @{};
     }
     return self;
 }
@@ -113,8 +107,16 @@
     [self.contentView.layer setBorderWidth:3.0];
     [self.contentView setBackgroundColor:[UIColor eggShellWhite]];
     
-    self.profileCache = [[GitHubProfileCache alloc] init];
-    [UIImageView setSharedImageCache:self.profileCache];
+    //self.profileCache = [[GitHubProfileCache alloc] init];
+    //[UIImageView setSharedImageCache:self.profileCache];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if ([self currentlyLoggedIn] && ![[self.fullUserInfo allKeys] count])
+        {
+            NSLog(@"Logged in");
+            [self getUserInfo:nil];
+        }
+    }];
     
 }
 -(void)viewDidLayoutSubviews{
@@ -126,15 +128,7 @@
     [self.splashPage.profileView.layer setBorderWidth:3.0];
     [self.splashPage.profileView.layer setCornerRadius:11.0];
     
-    if ([self currentlyLoggedIn])
-    {
-        NSLog(@"Logged in");
-        [self getUserInfo:^(BOOL complete){
-        }];
-    }
-    else{
-        NSLog(@"No users authenticated");
-    }
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -146,15 +140,21 @@
     [super didReceiveMemoryWarning];
 }
 
+// need to figure out how to store this info...
 -(void) getUserInfo:(void(^)(BOOL))completion{
     
     [self.sharedAPIManager useToken: [[NSUserDefaults standardUserDefaults] stringForKey:@"githubToken"]];
     [self.sharedAPIManager getCurrentlyLoggedinUserInfo:^(NSDictionary * userInfo) {
         
-        NSURL * profileImageURL =[NSURL URLWithString:[userInfo objectForKey:@"avatar_url"]];
+        NSURL * profileImageURL = [NSURL URLWithString:[userInfo objectForKey:@"avatar_url"]];
+        self.fullUserInfo = [NSDictionary dictionaryWithDictionary:userInfo];
         
-        [self.splashPage.profileImage setImageWithURL:profileImageURL];
-        [self.splashPage.profileImage.layer setMasksToBounds:YES];
+        [UIView animateWithDuration:.4 animations:^{
+            [self.splashPage.profileImage setImageWithURL:profileImageURL];
+            [self.splashPage.profileImage.layer setMasksToBounds:YES];
+        }];
+        
+        
         
     }];
 }

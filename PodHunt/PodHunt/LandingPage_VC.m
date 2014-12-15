@@ -15,6 +15,9 @@
 #import "UserSplashPage.h"
 #import "GitHubAPIRequestManager.h"
 
+#import <MMDrawerController/MMDrawerController.h>
+#import <MMDrawerController/UIViewController+MMDrawerController.h>
+
 @interface LandingPage_VC ()
 
 @property (strong,  nonatomic)      UIView      * rootView;
@@ -27,6 +30,8 @@
 @property (strong,  nonatomic)      UITableView * splashForkTable;
 
 @property (strong, nonatomic)       GitHubAPIRequestManager * sharedAPIManager;
+
+@property (strong, nonatomic)       UIViewController * leftMenuViewController;
 
 @end
 
@@ -60,22 +65,31 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"PodHunt";
-
+    self.leftMenuViewController = [[UIViewController alloc] init];
+    
     
     [self.contentView.layer setBorderColor:[UIColor bloodOrangeRed].CGColor];
     [self.contentView.layer setBorderWidth:3.0];
     
-    UIBarButtonItem * profileView = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"]
-                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self
-                                                                    action:@selector(sideBarButton:)];
-    self.navigationItem.leftBarButtonItem = profileView;
+//    UIBarButtonItem * profileView = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"]
+//                                                                     style:UIBarButtonItemStylePlain
+//                                                                    target:self
+//                                                                    action:@selector(sideBarButton:)];
+    //self.navigationItem.leftBarButtonItem = profileView;
+    
+    UIBarButtonItem * hamburger = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(leftMenu)];
+    self.navigationItem.leftBarButtonItem = hamburger;
     
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+-(void) leftMenu{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+        
+    }];
+}
 
 
 #pragma mark - Navigation
