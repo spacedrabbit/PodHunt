@@ -12,5 +12,6 @@
 
 +(instancetype)sharedManager;
 -(void)useToken:(NSString *)token;
+-(void) getCurrentlyLoggedinUserInfo:(void(^)(NSDictionary *))info;
 
 @end

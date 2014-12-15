@@ -12,9 +12,6 @@
 
 @property (strong, nonatomic) UIView * baseView;
 
-@property (strong, nonatomic) UIView * profileView;
-@property (strong, nonatomic) UIImageView * profileImage;
-
 @property (strong, nonatomic) UIScrollView * starredRepoView;
 @property (strong, nonatomic) UIScrollView * forkedRepoView;
 
@@ -28,7 +25,7 @@
     if (self) {
 
         _baseView = [[UIView alloc] init];
-        [_baseView setBackgroundColor:[UIColor yellowColor]];
+        //[_baseView setBackgroundColor:[UIColor yellowColor]];
         [self addSubview:_baseView];
         
     }
@@ -40,7 +37,7 @@
     
     CGRect parentViewFrame      = self.frame;
     CGSize profileViewBounds    = CGSizeMake(parentViewFrame.size.width, fabs(parentViewFrame.size.height/3.0));
-    CGSize profileImageBounds   = CGSizeMake( fabs(profileViewBounds.width / 3.0 ) , profileViewBounds.height);
+    CGSize profileImageBounds   = CGSizeMake( fabs(profileViewBounds.width / 2.5 ) , profileViewBounds.height);
     
     self.profileView        = [[UIView       alloc] init];
     self.forkedRepoView     = [[UIScrollView alloc] init];
@@ -64,9 +61,9 @@
     
     [self.profileImage setContentMode:UIViewContentModeScaleAspectFit];
     
-    [self.profileImage      setBackgroundColor: [UIColor orangeColor]];
-    [self.profileView       setBackgroundColor: [UIColor purpleColor]];
-    [self.starredRepoView   setBackgroundColor: [UIColor blueColor  ]];
+    //[self.profileImage      setBackgroundColor: [UIColor orangeColor]];
+    //[self.profileView       setBackgroundColor: [UIColor purpleColor]];
+    //[self.starredRepoView   setBackgroundColor: [UIColor blueColor  ]];
     
     NSArray * baseViewConstraints = @[  [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_baseView]|"
                                                                                 options:0

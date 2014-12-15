@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) id<UITableViewDataSource,UITableViewDelegate> tableDelegate;
 
+@property (strong, nonatomic) UIImageView * profileImage;
+@property (strong, nonatomic) UIView * profileView;
 @property (strong, nonatomic) UITableView * starredTable;
 @property (strong, nonatomic) UITableView * forkedTable;
 

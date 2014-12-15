@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 com.SRLabs. All rights reserved.
 //
 
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UIColor+HoneyPotColorPallette.h"
 #import "LandingPage_VC.h"
 #import "gitHubLogin_VC.h"
@@ -42,6 +43,8 @@
         _splashPage.tableDelegate = self;
         _splashStarTable = _splashPage.starredTable;
         _splashForkTable = _splashPage.forkedTable;
+        
+        _sharedAPIManager = [GitHubAPIRequestManager sharedManager];
     }
     return self;
 }
@@ -66,15 +69,38 @@
     
     [self.contentView.layer setBorderColor:[UIColor seafoamGreen].CGColor];
     [self.contentView.layer setBorderWidth:3.0];
+    [self.contentView setBackgroundColor:[UIColor eggShellWhite]];
     
-    // -- set up views according to logged in status -- //
-    if ([self currentlyLoggedIn])
-    {
-        NSLog(@"Logged in");;
-    }
-    else{
-        NSLog(@"No users authenticated");
-    }
+    UIBarButtonItem * getUserData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRedo
+                                                                                  target:self
+                                                                                  action:@selector(getUserInfo:)];
+    self.navigationItem.leftBarButtonItem = getUserData;
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.splashPage.profileView setBackgroundColor:[UIColor wayTooMuchMilkBrown]];
+        [self.splashPage.profileView.layer setBorderColor:[UIColor seafoamGreen].CGColor];
+        [self.splashPage.profileView.layer setBorderWidth:3.0];
+        [self.splashPage.profileView.layer setCornerRadius:11.0];
+        
+        // -- set up views according to logged in status -- //
+        if ([self currentlyLoggedIn])
+        {
+            NSLog(@"Logged in");
+            [self getUserInfo:^(BOOL complete){
+            }];
+        }
+        else{
+            NSLog(@"No users authenticated");
+        }
+    }];
+    
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self currentlyLoggedIn];
     
 }
 
@@ -82,13 +108,40 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void) getUserInfo:(void(^)(BOOL))completion{
+    
+    [self.sharedAPIManager useToken: [[NSUserDefaults standardUserDefaults] stringForKey:@"githubToken"]];
+    [self.sharedAPIManager getCurrentlyLoggedinUserInfo:^(NSDictionary * userInfo) {
+        
+        NSURL * profileImageURL =[NSURL URLWithString:[userInfo objectForKey:@"avatar_url"]];
+        
+        [self.splashPage.profileImage setImageWithURL:profileImageURL];
+        [self.splashPage.profileImage.layer setMasksToBounds:YES];
+
+    }];
+}
 -(BOOL) currentlyLoggedIn{
     
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"githubToken"]) {
         NSLog(@"Key found");
+        [self.sharedAPIManager useToken:[[NSUserDefaults standardUserDefaults] stringForKey:@"githubToken"]];
         return YES;
     };
     return NO;
+}
+
+- (UIImage *)getRoundedRectImageFromImage :(UIImage *)image onReferenceView :(UIImageView*)imageView withCornerRadius :(float)cornerRadius
+{
+    UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, NO, 1.0);
+    [[UIBezierPath bezierPathWithRoundedRect:imageView.bounds
+                                cornerRadius:cornerRadius] addClip];
+    [image drawInRect:imageView.bounds];
+    UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return finalImage;
+    
+    //source: http://stackoverflow.com/questions/7399343/making-a-uiimage-to-a-circle-form?rq=1
 }
 
 
@@ -109,6 +162,10 @@
 -(void)didFinishLoggingIn{
     [self dismissViewControllerAnimated:YES completion:^{
         
+        //need better handling of this token... probably need the API manager to just talk to GitHub view
+        [self.sharedAPIManager useToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"githubToken"]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:@"githubToken"];
         UIAlertView * finishedLogin =[[UIAlertView alloc] initWithTitle:@"Login Successful!"
                                                                 message:[NSString stringWithFormat:@"You have logged in with token: %@", token]
@@ -117,6 +174,8 @@
                                                       otherButtonTitles:nil];
         [finishedLogin show];
     }];
+    
+   
 }
 
 // -- misc methods -- //
