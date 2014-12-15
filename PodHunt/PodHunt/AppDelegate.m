@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "LandingPage_VC.h"
 #import "UserSplashPageController.h"
+#import "HamburgerViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,12 +24,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    // nav controller and 1st VC
     LandingPage_VC * rootViewController = [[LandingPage_VC alloc] init];
     UINavigationController * rootNavControl = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     
-    UIViewController * testLeftControl = [[UIViewController alloc] init];
-    [testLeftControl.view setBackgroundColor:[UIColor seafoamGreen]];
-    MMDrawerController * drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootNavControl leftDrawerViewController:testLeftControl];
+    // placeholder VC for drawer
+    HamburgerViewController * hamburgerMenu = [[HamburgerViewController alloc] init];
+    // init this with the UINavigationController & Left Drawer
+    MMDrawerController * drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootNavControl leftDrawerViewController:hamburgerMenu];
     
     UIFont * navBarFont = [UIFont fontWithName:@"Avenir" size:24.0];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
@@ -39,6 +43,7 @@
                                                             }];
     [[UINavigationBar appearance] setTintColor:[UIColor bloodOrangeRed]];
     
+    // make the MMDrawerController the rootView
     [self.window setRootViewController:drawerController];
     [self.window makeKeyAndVisible];
     

@@ -25,6 +25,8 @@
 		B1278CBF1A16970A00DFBA93 /* gitHubLogin_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278CBE1A16970A00DFBA93 /* gitHubLogin_VC.m */; };
 		B12E153F1A3F485800F6CAAD /* UserSplashPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B12E153E1A3F485800F6CAAD /* UserSplashPageController.m */; };
 		B12E15431A3F5CA100F6CAAD /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = B12E15421A3F5CA100F6CAAD /* menu.png */; };
+		B12E15461A3F996900F6CAAD /* HamburgerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B12E15451A3F996900F6CAAD /* HamburgerViewController.m */; };
+		B12E154A1A3F99CC00F6CAAD /* HamburgerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B12E15491A3F99CC00F6CAAD /* HamburgerView.m */; };
 		B16691201A3A5FE500CE48CC /* cocoabeen.png in Resources */ = {isa = PBXBuildFile; fileRef = B166911F1A3A5FE500CE48CC /* cocoabeen.png */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,10 @@
 		B12E153D1A3F485800F6CAAD /* UserSplashPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserSplashPageController.h; path = PodHunt/UserSplashPageController.h; sourceTree = "<group>"; };
 		B12E153E1A3F485800F6CAAD /* UserSplashPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserSplashPageController.m; path = PodHunt/UserSplashPageController.m; sourceTree = "<group>"; };
 		B12E15421A3F5CA100F6CAAD /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		B12E15441A3F996900F6CAAD /* HamburgerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerViewController.h; sourceTree = "<group>"; };
+		B12E15451A3F996900F6CAAD /* HamburgerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerViewController.m; sourceTree = "<group>"; };
+		B12E15481A3F99CC00F6CAAD /* HamburgerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HamburgerView.h; path = PodHunt/HamburgerView.h; sourceTree = "<group>"; };
+		B12E15491A3F99CC00F6CAAD /* HamburgerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HamburgerView.m; path = PodHunt/HamburgerView.m; sourceTree = "<group>"; };
 		B166911F1A3A5FE500CE48CC /* cocoabeen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cocoabeen.png; path = ../cocoabeen.png; sourceTree = "<group>"; };
 		B271084A918ACBAAAF1DD829 /* Pods-PodHunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodHunt.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodHunt/Pods-PodHunt.release.xcconfig"; sourceTree = "<group>"; };
 		D45C60B4C3CDED09E6F5C11E /* Pods-PodHunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodHunt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodHunt/Pods-PodHunt.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 				B1278CAD1A168CC700DFBA93 /* App Delegate */,
 				B166911E1A3A481D00CE48CC /* Utils */,
 				B1278CC01A16981A00DFBA93 /* Login Controllers */,
+				B12E15471A3F996D00F6CAAD /* Hamburger Menu */,
 				B166911D1A3A47E500CE48CC /* GitHub Login View */,
 				14911D701A3E9D6E007C0108 /* SlashPage */,
 				B1278C871A168C2000DFBA93 /* Supporting Files */,
@@ -207,6 +214,18 @@
 				B1278CBB1A16964500DFBA93 /* LandingPage_VC.m */,
 			);
 			name = "Login Controllers";
+			sourceTree = "<group>";
+		};
+		B12E15471A3F996D00F6CAAD /* Hamburger Menu */ = {
+			isa = PBXGroup;
+			children = (
+				B12E15441A3F996900F6CAAD /* HamburgerViewController.h */,
+				B12E15451A3F996900F6CAAD /* HamburgerViewController.m */,
+				B12E15481A3F99CC00F6CAAD /* HamburgerView.h */,
+				B12E15491A3F99CC00F6CAAD /* HamburgerView.m */,
+			);
+			name = "Hamburger Menu";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		B166911D1A3A47E500CE48CC /* GitHub Login View */ = {
@@ -383,11 +402,13 @@
 				14911D6F1A3E9D56007C0108 /* UserSplashPage.m in Sources */,
 				B1278CB61A1690EA00DFBA93 /* gitHubLogin.m in Sources */,
 				B1278CB91A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m in Sources */,
+				B12E15461A3F996900F6CAAD /* HamburgerViewController.m in Sources */,
 				B1278CBC1A16964500DFBA93 /* LandingPage_VC.m in Sources */,
 				B1278C8D1A168C2000DFBA93 /* AppDelegate.m in Sources */,
 				14911D731A3EB440007C0108 /* GitHubAPIRequestManager.m in Sources */,
 				B1278C8A1A168C2000DFBA93 /* main.m in Sources */,
 				B1278CBF1A16970A00DFBA93 /* gitHubLogin_VC.m in Sources */,
+				B12E154A1A3F99CC00F6CAAD /* HamburgerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

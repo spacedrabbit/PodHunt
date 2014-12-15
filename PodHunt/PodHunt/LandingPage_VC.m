@@ -16,6 +16,7 @@
 #import "GitHubAPIRequestManager.h"
 
 #import <MMDrawerController/MMDrawerController.h>
+#import <MMDrawerController/MMDrawerBarButtonItem.h>
 #import <MMDrawerController/UIViewController+MMDrawerController.h>
 
 @interface LandingPage_VC ()
@@ -77,7 +78,9 @@
 //                                                                    action:@selector(sideBarButton:)];
     //self.navigationItem.leftBarButtonItem = profileView;
     
-    UIBarButtonItem * hamburger = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(leftMenu)];
+    //UIBarButtonItem * hamburger = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(leftMenu)];
+    
+    UIBarButtonItem * hamburger = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftMenu)];
     self.navigationItem.leftBarButtonItem = hamburger;
     
 }
