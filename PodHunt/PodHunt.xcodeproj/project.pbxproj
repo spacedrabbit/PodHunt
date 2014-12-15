@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		141A75041A3D87CA00DBCA23 /* GitHub-Mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 141A75031A3D87CA00DBCA23 /* GitHub-Mark.png */; };
+		14911D6F1A3E9D56007C0108 /* UserSplashPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14911D6E1A3E9D56007C0108 /* UserSplashPage.m */; };
+		14911D731A3EB440007C0108 /* GitHubAPIRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14911D721A3EB440007C0108 /* GitHubAPIRequestManager.m */; };
 		93AFFAEFF0795CD87039115E /* libPods-PodHunt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAA7B9BEA93747051E6F3EF /* libPods-PodHunt.a */; };
 		B1278C8A1A168C2000DFBA93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278C891A168C2000DFBA93 /* main.m */; };
 		B1278C8D1A168C2000DFBA93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1278C8C1A168C2000DFBA93 /* AppDelegate.m */; };
@@ -36,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		141A75031A3D87CA00DBCA23 /* GitHub-Mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GitHub-Mark.png"; sourceTree = "<group>"; };
+		14911D6D1A3E9D56007C0108 /* UserSplashPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSplashPage.h; sourceTree = "<group>"; };
+		14911D6E1A3E9D56007C0108 /* UserSplashPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSplashPage.m; sourceTree = "<group>"; };
+		14911D711A3EB440007C0108 /* GitHubAPIRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubAPIRequestManager.h; path = PodHunt/GitHubAPIRequestManager.h; sourceTree = "<group>"; };
+		14911D721A3EB440007C0108 /* GitHubAPIRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubAPIRequestManager.m; path = PodHunt/GitHubAPIRequestManager.m; sourceTree = "<group>"; };
 		7DAA7B9BEA93747051E6F3EF /* libPods-PodHunt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PodHunt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1278C841A168C2000DFBA93 /* PodHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1278C881A168C2000DFBA93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,7 +64,7 @@
 		B1278CBB1A16964500DFBA93 /* LandingPage_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingPage_VC.m; sourceTree = "<group>"; };
 		B1278CBD1A16970A00DFBA93 /* gitHubLogin_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gitHubLogin_VC.h; sourceTree = "<group>"; };
 		B1278CBE1A16970A00DFBA93 /* gitHubLogin_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gitHubLogin_VC.m; sourceTree = "<group>"; };
-		B166911F1A3A5FE500CE48CC /* cocoabeen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cocoabeen.png; sourceTree = "<group>"; };
+		B166911F1A3A5FE500CE48CC /* cocoabeen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cocoabeen.png; path = ../cocoabeen.png; sourceTree = "<group>"; };
 		B271084A918ACBAAAF1DD829 /* Pods-PodHunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodHunt.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodHunt/Pods-PodHunt.release.xcconfig"; sourceTree = "<group>"; };
 		D45C60B4C3CDED09E6F5C11E /* Pods-PodHunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodHunt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodHunt/Pods-PodHunt.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,10 +97,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		14911D701A3E9D6E007C0108 /* SlashPage */ = {
+			isa = PBXGroup;
+			children = (
+				14911D6D1A3E9D56007C0108 /* UserSplashPage.h */,
+				14911D6E1A3E9D56007C0108 /* UserSplashPage.m */,
+			);
+			name = SlashPage;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		14911D741A3EB449007C0108 /* API Requests */ = {
+			isa = PBXGroup;
+			children = (
+				14911D711A3EB440007C0108 /* GitHubAPIRequestManager.h */,
+				14911D721A3EB440007C0108 /* GitHubAPIRequestManager.m */,
+			);
+			name = "API Requests";
+			path = ..;
+			sourceTree = "<group>";
+		};
 		B1278C7B1A168C2000DFBA93 = {
 			isa = PBXGroup;
 			children = (
-				B166911F1A3A5FE500CE48CC /* cocoabeen.png */,
 				B1278C861A168C2000DFBA93 /* PodHunt */,
 				B1278CA01A168C2000DFBA93 /* PodHuntTests */,
 				B1278C851A168C2000DFBA93 /* Products */,
@@ -115,10 +140,12 @@
 		B1278C861A168C2000DFBA93 /* PodHunt */ = {
 			isa = PBXGroup;
 			children = (
+				14911D741A3EB449007C0108 /* API Requests */,
 				B1278CAD1A168CC700DFBA93 /* App Delegate */,
 				B166911E1A3A481D00CE48CC /* Utils */,
 				B1278CC01A16981A00DFBA93 /* Login Controllers */,
 				B166911D1A3A47E500CE48CC /* GitHub Login View */,
+				14911D701A3E9D6E007C0108 /* SlashPage */,
 				B1278C871A168C2000DFBA93 /* Supporting Files */,
 			);
 			path = PodHunt;
@@ -127,6 +154,7 @@
 		B1278C871A168C2000DFBA93 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B166911F1A3A5FE500CE48CC /* cocoabeen.png */,
 				141A75031A3D87CA00DBCA23 /* GitHub-Mark.png */,
 				B1278CB01A168ED000DFBA93 /* GitHub_Logo.png */,
 				B1278C941A168C2000DFBA93 /* Images.xcassets */,
@@ -342,10 +370,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14911D6F1A3E9D56007C0108 /* UserSplashPage.m in Sources */,
 				B1278CB61A1690EA00DFBA93 /* gitHubLogin.m in Sources */,
 				B1278CB91A1695E600DFBA93 /* UIColor+HoneyPotColorPallette.m in Sources */,
 				B1278CBC1A16964500DFBA93 /* LandingPage_VC.m in Sources */,
 				B1278C8D1A168C2000DFBA93 /* AppDelegate.m in Sources */,
+				14911D731A3EB440007C0108 /* GitHubAPIRequestManager.m in Sources */,
 				B1278C8A1A168C2000DFBA93 /* main.m in Sources */,
 				B1278CBF1A16970A00DFBA93 /* gitHubLogin_VC.m in Sources */,
 			);

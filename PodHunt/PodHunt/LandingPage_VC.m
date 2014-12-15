@@ -10,18 +10,21 @@
 #import "LandingPage_VC.h"
 #import "gitHubLogin_VC.h"
 #import "GitHubLogin.h"
+#import "UserSplashPage.h"
+#import "GitHubAPIRequestManager.h"
 
-static NSString * const kPodsEndPoint = @"http://search.cocoapods.org/api/pods";
-static NSString * const kPodsAcceptHeader = @"application/vnd.cocoapods.org+picky.hash.json; version=1";
+@interface LandingPage_VC () <GitHubLoginViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
-// The API pattern is: http://metrics.cocoapods.org/api/v1/pods/PODNAME.json
-static NSString * const kPodsMetrics = @"http://metrics.cocoapods.org/api/v1/pods/";
+@property (strong,  nonatomic)      UIView      * rootView;
+@property (strong,  nonatomic)      UIView      * contentView;
 
-@interface LandingPage_VC () <GitHubLoginViewControllerDelegate>
+@property (weak,    nonatomic)      UIButton    * loginButton;
 
-@property (strong, nonatomic) UIView * rootView;
-@property (strong, nonatomic) UIView * contentView;
-@property (weak, nonatomic) UIButton * loginButton;
+@property (strong,  nonatomic)      UserSplashPage * splashPage;
+@property (strong,  nonatomic)      UITableView * splashStarTable;
+@property (strong,  nonatomic)      UITableView * splashForkTable;
+
+@property (strong, nonatomic)       GitHubAPIRequestManager * sharedAPIManager;
 
 @end
 
@@ -32,6 +35,13 @@ static NSString * const kPodsMetrics = @"http://metrics.cocoapods.org/api/v1/pod
     if (self) {
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 44.0, [UIScreen mainScreen].bounds.size.width,  [UIScreen mainScreen].bounds.size.height - 44.0)];
         [self.view addSubview:_contentView];
+        
+        _splashPage = [[UserSplashPage alloc] initWithFrame:_contentView.bounds];
+        [_contentView addSubview:_splashPage];
+        
+        _splashPage.tableDelegate = self;
+        _splashStarTable = _splashPage.starredTable;
+        _splashForkTable = _splashPage.forkedTable;
     }
     return self;
 }
@@ -57,15 +67,34 @@ static NSString * const kPodsMetrics = @"http://metrics.cocoapods.org/api/v1/pod
     [self.contentView.layer setBorderColor:[UIColor seafoamGreen].CGColor];
     [self.contentView.layer setBorderWidth:3.0];
     
+    // -- set up views according to logged in status -- //
+    if ([self currentlyLoggedIn])
+    {
+        NSLog(@"Logged in");;
+    }
+    else{
+        NSLog(@"No users authenticated");
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+-(BOOL) currentlyLoggedIn{
+    
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"githubToken"]) {
+        NSLog(@"Key found");
+        return YES;
+    };
+    return NO;
+}
+
 
 #pragma mark - Navigation
 
+// -- NavBar item to log in -- //
 - (void)loginButton:(id)sender {
     
     gitHubLogin_VC * loginScreen = [[gitHubLogin_VC alloc] init];
@@ -76,6 +105,7 @@ static NSString * const kPodsMetrics = @"http://metrics.cocoapods.org/api/v1/pod
     
 }
 
+// -- delegate method of the GitHubLogin class -- //
 -(void)didFinishLoggingIn{
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -89,6 +119,7 @@ static NSString * const kPodsMetrics = @"http://metrics.cocoapods.org/api/v1/pod
     }];
 }
 
+// -- misc methods -- //
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }

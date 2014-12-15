@@ -11,6 +11,7 @@
 #import "gitHubLogin_VC.h"
 #import "GitHubLogin.h"
 
+
 #pragma mark - Pod Notification Handler (Private Class) -
 /**********************************************************************************
  *
@@ -55,6 +56,7 @@
     [self saveReferenceToAppDelegate];
     
 }
+// specifically, the notification of the call back from mobileSafari
 -(void) registerForNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserverForName:@"gitRedirect"
@@ -81,7 +83,7 @@
 // -- UIAPPLICATION DELEGATE METHOD -- //
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
-    NSLog(@"Handling URL");
+    
     if ( [[url absoluteString] hasPrefix:@"gitlog"] ) {
         NSLog(@"The url: %@", url);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"gitRedirect"
@@ -103,6 +105,16 @@
 /**********************************************************************************
  *
  *          Authentication Handler
+ *
+ *      This class is involved in all aspects of the Authentication process.
+ *      - Defines a protocol to let its delegate know of important events
+ *          - Code authorization began
+ *          - Token Request began
+ *      - It has an owner, similar to the notification handler
+ *      - It handles the authentication process in it's implementation
+ *          - Begins authentication request
+ *          - Begins token request after authentication is completed
+ *
  *
  ***********************************************************************************/
 #pragma mark - Pod Auth Handler (Private Class) -
@@ -145,12 +157,14 @@ static NSString * kGitHubToken = @"";
 // -- Implementation -- //
 @implementation PodHuntAuthenticationHandler
 
+// -- Assigning delegate status -- //
 -(void)assignOwnershipTo:(id<PodHuntAuthenticationHandlerDelegate>)owner
 {
     self.owner = owner;
     self.shouldSaveTokenInUserDefaults = YES; // make no if no saving is needed
 }
 
+// -- GET request to GitHub with basic URL parameters -- //
 -(void)beginGitHubAuthentication:(void (^)(BOOL))success
 {
     NSDictionary * requestParameters =  @{
@@ -168,6 +182,7 @@ static NSString * kGitHubToken = @"";
     [[UIApplication sharedApplication] openURL:authenticationRequest.URL];
 }
 
+// -- POST request to get a token. -- This method is called by the delegate after success on access_code request -- //
 -(void)beginGitHubTokenRequestForAccessCode:(NSString *)accessCode completion:(void (^)(BOOL, NSString *))success{
     
     kGitHubCode = accessCode;
@@ -192,12 +207,18 @@ static NSString * kGitHubToken = @"";
                                    {
                                        if (!error)
                                        {
-                                           if ([responseObject objectForKey:@"access_token"]) {
+                                           if ([responseObject objectForKey:@"access_token"])
+                                           {
+                                               // -- Good response returns us JSON with an "access_token" -- //
                                                kGitHubToken = [responseObject objectForKey:@"access_token"];
                                                NSLog(@"Token successfully issued: %@", kGitHubToken);
+                                               
+                                               // -- this bubbles back up to the delegate, who called this method -- //
                                                success(YES, kGitHubToken);
-                                           }else if ([responseObject objectForKey:@"error"])
+                                           }
+                                           else if ([responseObject objectForKey:@"error"])
                                            {
+                                               // -- Bad response returns JSON with "error" key -- //
                                                NSString * errorMessage = [NSString stringWithFormat:@"There was an error: %@\n\nDescription from Git: %@\n\nURL: %@", responseObject[@"error"], responseObject[@"error_description"], responseObject[@"error_uri"]];
                                                
                                                UIAlertView * badCodeAlert = [[UIAlertView alloc] initWithTitle:@"Error Authenticating"
@@ -205,10 +226,13 @@ static NSString * kGitHubToken = @"";
                                                                                                       delegate:nil
                                                                                              cancelButtonTitle:@"Dismiss"
                                                                                              otherButtonTitles:nil];
+                                               
                                                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                                    [badCodeAlert show];
                                                }];
-                                           }else{
+                                               
+                                           }else
+                                           {
                                                NSLog(@"Something weird happened with the token request...");
                                            }
                                        }
@@ -300,10 +324,15 @@ static NSString * kGitHubToken = @"";
 
 #pragma mark - Authentication Handler Delegate Methods
 
+// -- This gets call on button press -- //
 -(void)didBeginCodeRequest:(void (^)(BOOL))sucess
 {
     [self.authenticationHandler beginGitHubAuthentication:nil];
 }
+
+// -- Calls the Auth handler's Token request method. If the request is successful,
+// -- saveToken is called to save the token in NSUserDefaults, and then this
+// -- dismisses the view
 -(void)didbeginTokenRequestForAccessCode:(NSString *)accessCode completion:(void (^)(BOOL))success
 {
     [self.authenticationHandler beginGitHubTokenRequestForAccessCode:accessCode
@@ -317,12 +346,16 @@ static NSString * kGitHubToken = @"";
 }
 
 #pragma mark - Notification Handler Delegate Methods
+// -- The Notification Handler listens for the app to return from Safari, then calls this method
+// -- on it's delegate. This method in turn calls didBeginTokenRequestForAccessCode of the
+// -- Authentication Handler Delegate method.
 -(void)didReceiveCodeNotificationResponse:(NSDictionary *)noteInfo
 {
     NSString * returnedGitHubCode = [self.authenticationHandler urlCodeParser:noteInfo[@"url"]];
     [self didbeginTokenRequestForAccessCode:returnedGitHubCode completion:nil];
 }
 
+// -- MISC METHODS -- //
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }
