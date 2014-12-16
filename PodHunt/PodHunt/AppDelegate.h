@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class LandingPage_VC;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) LandingPage_VC * rootViewController;
 
 @end
 

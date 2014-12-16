@@ -19,19 +19,16 @@
     self = [super initWithFrame:frame style:style];
     if (self) {
         
-        _basicCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicCell"];
-        [_basicCell setSelectionStyle:UITableViewCellSelectionStyleDefault];
-        
         self.separatorColor = [UIColor clearColor];
-        self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         self.separatorInset = UIEdgeInsetsZero;
         
-        _headerView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"headerView"];
+        self.alwaysBounceVertical = NO;
     }
     return self;
 }
 -(id)dequeueReusableCellWithIdentifier:(NSString *)identifier{
     UITableViewCell * newCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicCell"];
+    newCell.backgroundColor = [UIColor clearColor];
     return newCell;
 }
 -(NSInteger)numberOfSections{
@@ -47,16 +44,14 @@
     return [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:identifier];
 }
 
--(UITableViewHeaderFooterView *)headerViewForSection:(NSInteger)section{
-
-    
+-(UITableViewHeaderFooterView *)headerViewForSection:(NSInteger)section
+{
     UITableViewHeaderFooterView * header = [self dequeueReusableHeaderFooterViewWithIdentifier:@"headerView"];
-    UIFont * headerFont = [UIFont fontWithName:@"Avenir" size:24.0];
+    UIFont * headerFont = [UIFont fontWithName:@"Arial" size:100.0];
     NSAttributedString * textString = [[NSAttributedString alloc] initWithString:@"Search Repos"
                                                                      attributes:@{ NSFontAttributeName: headerFont,
                                                                                    NSForegroundColorAttributeName : [UIColor deepOrange],
                                                                                 }];
-    [header setLayoutMargins:UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)];
     if (section == 0) {
         header.textLabel.attributedText = textString;
     }

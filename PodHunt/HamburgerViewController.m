@@ -7,12 +7,18 @@
 //
 
 #import "UIColor+HoneyPotColorPallette.h"
+#import "UserSplashPageController.h"
+#import <MMDrawerController/UIViewController+MMDrawerController.h>
+#import "gitHubLogin_VC.h"
 #import "HamburgerViewController.h"
 #import "HamburgerView.h"
+#import "AppDelegate.h"
+#import "LandingPage_VC.h"
 
 @interface HamburgerViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) HamburgerView * rootTable;
+@property (strong, nonatomic) UIVisualEffectView * fancyView;
 
 @end
 
@@ -27,6 +33,9 @@
         _rootTable.delegate = self;
         [self.view addSubview:_rootTable];
         
+        _fancyView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+        [self.view insertSubview:_fancyView aboveSubview:_rootTable];
+        
     }
     return self;
 }
@@ -39,6 +48,25 @@
 -(void)viewWillLayoutSubviews{
     
     [_rootTable setBackgroundColor:[UIColor eggShellWhite]];
+    [_rootTable setContentOffset:CGPointMake(0.0, -100)];
+    [_rootTable setContentInset:UIEdgeInsetsMake(100, 0, 0, 0)];
+    
+    [_fancyView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    NSArray * fancyViewConstraints = @[ [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_fancyView]|"
+                                                                                options:0
+                                                                                metrics:nil
+                                                                                  views:NSDictionaryOfVariableBindings(_fancyView)],
+                                        [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_fancyView(==100)]"
+                                                                                options:0
+                                                                                metrics:nil
+                                                                                  views:NSDictionaryOfVariableBindings(_fancyView)]
+                                       ];
+    for (NSArray * constraints in fancyViewConstraints) {
+        [self.view addConstraints:constraints];
+    }
+    UIImageView * cocoaPod = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cocoabeen"]];
+    [_fancyView addSubview:cocoaPod];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,12 +79,39 @@
     UITableViewCell * cell = [table dequeueReusableCellWithIdentifier:table.basicCell.reuseIdentifier];
     
     if(indexPath.section == 0){
-        cell.textLabel.text = @"THis is section 1";
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"Go Home";
+        }else{
+            cell.textLabel.text = @"Browse Pods";
+        }
     }else{
-        cell.textLabel.text = @"THis is section Else";
+        cell.textLabel.text = @"Login With GitHub";
     }
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UIViewController * dstvc;
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row == 0)
+        {
+            LandingPage_VC * mainPage = [[LandingPage_VC alloc] init];
+            dstvc = mainPage;
+        }else{
+            UserSplashPageController * userProfileView = [[UserSplashPageController alloc] init];
+            dstvc = userProfileView;
+        }
+    }
+    else
+    {
+        gitHubLogin_VC * loginScreen = [[gitHubLogin_VC alloc] init];
+        dstvc = loginScreen;
+    }
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+        [self.mm_drawerController.centerViewController showViewController:dstvc sender:self];
+    }];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -78,7 +133,21 @@
 {
     return [self.rootTable rowHeight];
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if(section ==1 ){
+        return 40.0;
+    }
+    return 0.0;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *footerView = [[UIView alloc] init];
+    if (section == 1) {
+       
+        [footerView setBackgroundColor:[UIColor beigerThanBeige]];
+        
+    }
+    return footerView;
+}
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }

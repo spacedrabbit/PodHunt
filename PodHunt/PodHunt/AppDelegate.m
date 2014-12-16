@@ -26,8 +26,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     // nav controller and 1st VC
-    LandingPage_VC * rootViewController = [[LandingPage_VC alloc] init];
-    UINavigationController * rootNavControl = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    self.rootViewController = [[LandingPage_VC alloc] init];
+    UINavigationController * rootNavControl = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
     
     // placeholder VC for drawer
     HamburgerViewController * hamburgerMenu = [[HamburgerViewController alloc] init];
