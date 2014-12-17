@@ -5,7 +5,7 @@
 //  Created by Louis Tur on 11/14/14.
 //  Copyright (c) 2014 com.SRLabs. All rights reserved.
 //
-
+#import <MMDrawerController/MMDrawerVisualState.h>
 #import <MMDrawerController/MMDrawerController.h>
 #import <MMDrawerController/MMDrawerBarButtonItem.h>
 #import "UIColor+HoneyPotColorPallette.h"
@@ -33,6 +33,10 @@
     HamburgerViewController * hamburgerMenu = [[HamburgerViewController alloc] init];
     // init this with the UINavigationController & Left Drawer
     MMDrawerController * drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootNavControl leftDrawerViewController:hamburgerMenu];
+    
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModePanningCenterView];
+    [drawerController setDrawerVisualStateBlock:[MMDrawerVisualState parallaxVisualStateBlockWithParallaxFactor:15.0]];
     
     UIFont * navBarFont = [UIFont fontWithName:@"Avenir" size:24.0];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];

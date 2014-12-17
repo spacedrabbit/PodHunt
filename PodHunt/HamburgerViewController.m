@@ -85,12 +85,25 @@
             cell.textLabel.text = @"Browse Pods";
         }
     }else{
-        cell.textLabel.text = @"Login With GitHub";
+        if (indexPath.section == 0) {
+            cell.textLabel.text = @"Login With GitHub";
+        }else{
+            cell.textLabel.text = @"Other things";
+        }
+        
     }
     
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+//    UINavigationController * rootNav = (UINavigationController *)self.mm_drawerController.centerViewController;
+//    
+//    if ( [rootNav.visibleViewController isKindOfClass:[LandingPage_VC class]]) {
+//       // [self.mm_drawerController.navigationController popToRootViewControllerAnimated:YES];
+//        [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+//    }
     
     UIViewController * dstvc;
     if (indexPath.section == 0)
@@ -99,6 +112,7 @@
         {
             LandingPage_VC * mainPage = [[LandingPage_VC alloc] init];
             dstvc = mainPage;
+            
         }else{
             UserSplashPageController * userProfileView = [[UserSplashPageController alloc] init];
             dstvc = userProfileView;
@@ -109,10 +123,21 @@
         gitHubLogin_VC * loginScreen = [[gitHubLogin_VC alloc] init];
         dstvc = loginScreen;
     }
-    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+    
+    [UIView animateWithDuration:.4 animations:^{
         [self.mm_drawerController.centerViewController showViewController:dstvc sender:self];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+        }
     }];
 }
+-(BOOL)transitioningFrom:(UIViewController *)origin to:(UIViewController *)destination
+{
+    
+    return YES;
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [self.rootTable numberOfSections];

@@ -107,8 +107,8 @@
     [self.contentView.layer setBorderWidth:3.0];
     [self.contentView setBackgroundColor:[UIColor eggShellWhite]];
     
-    //self.profileCache = [[GitHubProfileCache alloc] init];
-    //[UIImageView setSharedImageCache:self.profileCache];
+    self.profileCache = [[GitHubProfileCache alloc] init];
+    [UIImageView setSharedImageCache:self.profileCache];
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         if ([self currentlyLoggedIn] && ![[self.fullUserInfo allKeys] count])
@@ -119,9 +119,7 @@
     }];
     
 }
--(void)viewDidLayoutSubviews{
-    
-}
+
 -(void)viewWillLayoutSubviews{
     [self.splashPage.profileView setBackgroundColor:[UIColor eggShellWhite]];
     [self.splashPage.profileView.layer setBorderColor:[UIColor bloodOrangeRed].CGColor];
@@ -197,6 +195,7 @@
 }
 
 // -- delegate method of the GitHubLogin class -- //
+#warning deprecated
 -(void)didFinishLoggingIn{
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -204,13 +203,13 @@
         [self.sharedAPIManager useToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"githubToken"]];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:@"githubToken"];
-        UIAlertView * finishedLogin =[[UIAlertView alloc] initWithTitle:@"Login Successful!"
-                                                                message:[NSString stringWithFormat:@"You have logged in with token: %@", token]
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-        [finishedLogin show];
+//        NSString * token = [[NSUserDefaults standardUserDefaults] objectForKey:@"githubToken"];
+//        UIAlertView * finishedLogin =[[UIAlertView alloc] initWithTitle:@"Login Successful!"
+//                                                                message:[NSString stringWithFormat:@"You have logged in with token: %@", token]
+//                                                               delegate:nil
+//                                                      cancelButtonTitle:@"OK"
+//                                                      otherButtonTitles:nil];
+//        //[finishedLogin show];
     }];
     
     

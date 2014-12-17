@@ -68,18 +68,10 @@
     self.navigationItem.title = @"PodHunt";
     self.leftMenuViewController = [[UIViewController alloc] init];
     
-    
     [self.contentView.layer setBorderColor:[UIColor bloodOrangeRed].CGColor];
     [self.contentView.layer setBorderWidth:3.0];
-    
-//    UIBarButtonItem * profileView = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"]
-//                                                                     style:UIBarButtonItemStylePlain
-//                                                                    target:self
-//                                                                    action:@selector(sideBarButton:)];
-    //self.navigationItem.leftBarButtonItem = profileView;
-    
-    //UIBarButtonItem * hamburger = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(leftMenu)];
-    
+
+    // -- MMDrawerBarButton -- //
     UIBarButtonItem * hamburger = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftMenu)];
     self.navigationItem.leftBarButtonItem = hamburger;
     
@@ -88,30 +80,9 @@
     [super didReceiveMemoryWarning];
 }
 
+// -- MMDrawerMenu -- // 
 -(void) leftMenu{
-    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
-        
-    }];
-}
-
-
-#pragma mark - Navigation
-
-// -- NavBar item to log in -- //
-- (void)loginButton:(id)sender {
-    
-    gitHubLogin_VC * loginScreen = [[gitHubLogin_VC alloc] init];
-    [self presentViewController:loginScreen animated:YES completion:^{
-        NSLog(@"Done");
-    }];
-    
-}
-
--(void) sideBarButton:(id)sender{
-
-    UserSplashPageController * userProfileView = [[UserSplashPageController alloc] init];
-    [self.navigationController showViewController:userProfileView sender:self];
-    
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 // -- misc methods -- //

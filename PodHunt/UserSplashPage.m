@@ -25,7 +25,6 @@
     if (self) {
 
         _baseView = [[UIView alloc] init];
-        //[_baseView setBackgroundColor:[UIColor yellowColor]];
         [self addSubview:_baseView];
         
     }
