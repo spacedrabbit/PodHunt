@@ -43,7 +43,7 @@
     [[UINavigationBar appearance] setTranslucent:YES];
     [[UINavigationBar appearance] setBarTintColor:[UIColor eggShellWhite]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSFontAttributeName: navBarFont,
-                                                            NSForegroundColorAttributeName : [UIColor deepNavy],
+                                                            NSForegroundColorAttributeName : [UIColor bloodOrangeRed],
                                                             }];
     [[UINavigationBar appearance] setTintColor:[UIColor bloodOrangeRed]];
     
